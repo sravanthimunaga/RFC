@@ -21,24 +21,30 @@
   padding: 0px 20px;
 }
 .mainSub{
- width:80%;
-  margin:auto;
+  width:80%;
+  margin:30px auto;
 }
 .mainSub h4{
   text-align: left !important;
+  font-size: 20px;
 }
 .mainSub p{
   text-align: right !important;
+  font-size: 18px;
 }
 .mainSub .buttonMain{
-  margin:20px;
+  margin:20px 0px;
   align-items: right;
 
 }
+.buttonMain{float: right;}
+
 .table-comp{
   display: flex;
   justify-content: center;
   margin:auto;
+  clear: both;
+  width: 100%;
 }
 
 

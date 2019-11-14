@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import Grid from '@material-ui/core/Grid';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
@@ -58,7 +59,38 @@ class App extends React.Component {
             }
         });
     }
+    upload(e){
+        var form =  { title: 'Due Date', field: 'DueDate',type:"date"},
+            url = 'https://script.google.com/macros/s/AKfycbz92LEtB-nZW7Dw5YQQwMRELq9VpKRCYFkGuZF89qirUiLnzFlw/exec'
 
+        $.fn.serializeObject = function()
+        {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+            e.preventDefault();
+            var jqxhr = $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "json",
+                data: form,
+                success: function(result){
+                    console.log('data', result);
+                }});
+            console.log(jqxhr , '')
+
+    }
     render() {
         console.log(finalData , 'finalll dataaa');
         return(
@@ -85,7 +117,7 @@ class App extends React.Component {
                         </Grid>
                     </div>
                     <div className="buttonMain" >
-                        <Button variant="contained" color="primary" >
+                        <Button variant="contained" color="primary" onClick={(e)=> this.upload(e)} >
                             Upload to google spread sheet
                         </Button>
                     </div>

@@ -3,11 +3,13 @@ import Grid from '@material-ui/core/Grid';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
 import './App.css';
-import Creds from './client_secret.json';
-import GoogleSpreadsheet from 'google-spreadsheet';
+import Chart from 'chart.js';
 
-
+let getData = localStorage.getItem('data');
 var finalData =[];
+if(getData !== null && getData.length>0){
+    finalData = JSON.parse(getData);
+}
 
 class App extends React.Component {
     constructor(props) {
@@ -25,40 +27,35 @@ class App extends React.Component {
         }
     }
 
-    componentWillMount(){
-        let getData = localStorage.getItem('data');
-        if(getData !== null && getData.length>0){
-            finalData = JSON.parse(getData);
-        }
+    componentDidMount(){
+        this.drowChart();
     }
-    uploadExcel(){
 
-
-        var doc = new GoogleSpreadsheet('1edp7bkIN9Hnlj351ilAYvIahWZ3a2-NrFdebQJJbrsY');
-        console.log(doc , 'docssss');
-        console.log(Creds , 'credscredscreds');
-        // Authenticate with the Google Spreadsheets API.
-        doc.useServiceAccountAuth(Creds, function (err) {
-            if (err) console.log(err);
-            doc.getInfo(function (err, info) {
-                console.log(info , 'infioooo');
-                console.log(err , 'errooo');
-                console.log('Loaded doc: ' + info.title + ' by ' + info.author.email);
-                let sheet = info.worksheets[0];
-                console.log('sheet #1: ' + sheet.title + ' ' + sheet.rowCount + 'x' + sheet.colCount);
-
-                var newrow = {
-                    title: 'banana',
-                    type: 'fruit',
-                    url: 'http://example.com'
-                };
-                doc.addRow(1, newrow, function( err, rows ){
-                    if (err) console.log(err);
-                    console.log(rows);
-
-                });
-
-            })
+    drowChart() {
+        console.log(this.state.data , 'data');
+        var ctx = document.getElementById('chart1').getContext('2d');
+        Chart.defaults.global.tooltips.enabled = true;
+        window.chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+            responsive: true,
+            showTooltips: true,
+            data :{
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#8463FF",
+                        "#6384FF"
+                    ],
+                }],
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'overDue',
+                    'Done',
+                    'InProgress'
+                ]
+            }
         });
     }
 
@@ -69,6 +66,13 @@ class App extends React.Component {
                 <header className="App-header">
                   <img src="https://www.zen3.com/wp-content/uploads/2019/04/zen3-logo.png" className="App-logo" alt="Zen3" />
                 </header>
+
+                <div className="margin-5">
+                    <div style={{maxWidth:'300px', margin:'auto'}} >
+                    <canvas id={"chart1"} width="300" height="190"/>
+                    </div>
+                </div>
+
                 <div className="mainSub">
                     <div>
                         <Grid container >
@@ -81,7 +85,7 @@ class App extends React.Component {
                         </Grid>
                     </div>
                     <div className="buttonMain" >
-                        <Button variant="contained" color="primary" onClick={()=> this.uploadExcel()}>
+                        <Button variant="contained" color="primary" >
                             Upload to google spread sheet
                         </Button>
                     </div>

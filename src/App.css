@@ -1,67 +1,77 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 10vmin;
-  width: 35vmin;
-  margin:4px;
-  padding: 0px;
+    height: 10vmin;
+    width: 35vmin;
+    margin: 4px;
+    padding: 0px;
 }
 
 .App-header {
-  min-height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  box-shadow:0 0 15px 1px rgba(0,0,0,0.07);
-  padding: 0px 20px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.07);
+    padding: 0px 20px;
 }
-.mainSub{
-  width:80%;
-  margin:20px auto;
+
+.mainSub {
+    width: 80%;
+    margin: 20px auto;
 }
-.mainSub h4{
-  text-align: left !important;
-  font-size: 20px;
+
+.mainSub h4 {
+    text-align: left !important;
+    font-size: 20px;
 }
-.mainSub p{
-  text-align: right !important;
-  font-size: 18px;
+
+.mainSub p {
+    text-align: right !important;
+    font-size: 18px;
 }
-.mainSub .buttonMain{
-  margin:20px 0px;
-  align-items: right;
+
+.mainSub .buttonMain {
+    margin: 20px 0px;
+    align-items: right;
 
 }
-.buttonMain{float: right;}
 
-.table-comp{
-  display: flex;
-  justify-content: center;
-  margin:auto;
-  clear: both;
-  width: 100%;
+.buttonMain {
+    float: right;
+}
+
+.table-comp {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    clear: both;
+    width: 100%;
 }
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
 }

@@ -96,7 +96,7 @@ class App extends React.Component {
                     status: excel.status
                 };
                 let url = 'https://script.google.com/macros/s/AKfycbz92LEtB-nZW7Dw5YQQwMRELq9VpKRCYFkGuZF89qirUiLnzFlw/exec';
-                $.fn.serializeObject = function () {
+                    $.fn.serializeObject = function () {
                     var o = {};
                     var a = this.serializeArray();
                     $.each(a, function () {
